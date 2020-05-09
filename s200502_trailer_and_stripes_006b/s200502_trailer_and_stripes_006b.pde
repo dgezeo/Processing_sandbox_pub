@@ -7,6 +7,8 @@ float speed = 0.35; // 0 -> 1
 Trail[] trailers = new Trail[elements];
 Trail[] trailers_back = new Trail[elements];
 
+VirtualMouse vm;
+
 void setup() {
 
   size(800, 450);
@@ -16,11 +18,23 @@ void setup() {
     trailers[i] = new Trail();
     trailers_back[i] = new Trail();
   }
+
+  vm = new VirtualMouse(width / 2, height / 2, 0.1, 0.2, 0.3, 6);
 }
 
 void draw() {
 
   background(0, 0, 50);
+
+  if (mouseX == pmouseX && mouseY == pmouseY) {
+    vm.update();
+  } else {
+    vm.pvmouseX = vm.vmouseX;
+    vm.pvmouseY = vm.vmouseY;
+    vm.vmouseX = mouseX;
+    vm.vmouseY = mouseY;
+  }
+  // vm.display();
 
   float target_x;
   float target_y;
@@ -28,8 +42,8 @@ void draw() {
   for (int i = 0; i < trailers.length; i++) {
 
     if (i == 0) {
-      target_x = mouseX;
-      target_y = mouseY;
+      target_x = vm.vmouseX;
+      target_y = vm.vmouseY;
     } else {
       target_x = trailers[i - 1].x;
       target_y = trailers[i - 1].y;
