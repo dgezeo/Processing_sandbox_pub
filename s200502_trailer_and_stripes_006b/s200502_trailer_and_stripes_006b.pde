@@ -63,6 +63,5 @@ void draw() {
     vertex(d.x, d.y);
     vertex(c.x, c.y);    
     endShape(CLOSE);
-    noFill();
   }
 }
