@@ -7,10 +7,4 @@ class Trail {
     this.last_y = 0;
   }
 
-  init() {
-
-    print("f", this.x, this.y);
-
-  }
-
 }
