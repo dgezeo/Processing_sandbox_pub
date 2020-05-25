@@ -1,6 +1,7 @@
 class ParticleSystem {
   ArrayList<Particle> particles;
 
+  int id;
   int p_max = 100;
 
   ParticleSystem() {
@@ -9,7 +10,10 @@ class ParticleSystem {
 
   void addParticle(float x, float y, float life, float radius) {
     int p_size = particles.size();
-    if (p_size <= p_max) particles.add(new Particle(x, y, life, radius));
+    if (p_size <= p_max) {
+      id++;
+      particles.add(new Particle(id, x, y, life, radius));
+    }
   }
 
   void link() {
